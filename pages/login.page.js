@@ -1,41 +1,19 @@
-
-
 import Page from './page';
 
-/**
- * sub page containing specific selectors and methods for a specific page
- */
 class LoginPage extends Page {
-    /**
-     * define selectors using getter methods
-     */
-    get inputUsername() {
-        return $('#username');
-    }
+    get inputUsername() {return $('[qa-id="email"]')}
+    get inputPassword() {return $('[qa-id="password"]')}
+    get btnSubmit() {return $('.login-form-button')}
 
-    get inputPassword() {
-        return $('#password');
-    }
-
-    get btnSubmit() {
-        return $('button[type="submit"]');
-    }
-
-    /**
-     * a method to encapsule automation code to interact with the page
-     * e.g. to login using username and password
-     */
     async login (username, password) {
         await this.inputUsername.setValue(username);
         await this.inputPassword.setValue(password);
+        await expect(this.btnSubmit).toBeEnabled()
         await this.btnSubmit.click();
     }
 
-    /**
-     * overwrite specific options to adapt it to page object
-     */
     open() {
-        return super.open('login');
+        return super.open('/user/login');
     }
 }
 
