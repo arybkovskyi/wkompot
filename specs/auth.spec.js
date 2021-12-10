@@ -11,4 +11,24 @@ describe('Auth', function() {
         await LoginPage.login('diwej38033@luxiu2.com','Qwerty123');
         await expect(ProfilePage.iconUser).toBeDisplayed();
     })
+
+    it('Log in attempt with invalid username', async function(){
+        await LoginPage.login('testinvalid@luxiu2.com','InvalidTest');
+        await expect(LoginPage.notification).toHaveText('Email is not registered')
+    })
+
+    it('Log in attempt with invalid passw0rd', async function(){
+        await LoginPage.login('diwej38033@luxiu2.com','InvalidTest');
+        await expect(LoginPage.notification).toHaveText('Incorrect password')
+    })
+
+    it.only('Credentials are required', async function(){
+        await LoginPage.inputUsername.setValue('test');
+        await LoginPage.inputUsername.smartClear();
+        await expect(LoginPage.loginError).toHaveText('Required');
+        await LoginPage.inputPassword.setValue('test');
+        await LoginPage.inputPassword.smartClear();
+        await expect(LoginPage.passwordError).toHaveText('Required')
+    })
+
 });
