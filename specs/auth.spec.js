@@ -8,7 +8,7 @@ describe('Auth', function() {
 
     it('Successful log in', async function(){
         await expect(LoginPage.btnSubmit).toBeDisabled();
-        await LoginPage.login('diwej38033@luxiu2.com','Qwerty123');
+        await LoginPage.login(process.env.LOGIN,process.env.PASSWORD);
         await expect(ProfilePage.iconUser).toBeDisplayed();
     })
 
@@ -18,7 +18,7 @@ describe('Auth', function() {
     })
 
     it('Log in attempt with invalid passw0rd', async function(){
-        await LoginPage.login('diwej38033@luxiu2.com','InvalidTest');
+        await LoginPage.login(process.env.LOGIN,'InvalidTest');
         await expect(LoginPage.notification).toHaveText('Incorrect password')
     })
 
