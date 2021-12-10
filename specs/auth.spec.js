@@ -8,7 +8,7 @@ describe('Auth', function() {
 
     it('Successful log in', async function(){
         await expect(LoginPage.btnSubmit).toBeDisabled();
-        await LoginPage.login('diwej38033@luxiu2.com','Qwerty123');
+        await LoginPage.login(process.env.LOGIN,process.env.PASSWORD);
         await expect(ProfilePage.iconUser).toBeDisplayed();
     })
 });
