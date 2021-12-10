@@ -18,7 +18,7 @@ describe('Auth', function() {
     })
 
     it('Log in attempt with invalid passw0rd', async function(){
-        await LoginPage.login('diwej38033@luxiu2.com','InvalidTest');
+        await LoginPage.login(process.env.LOGIN,'InvalidTest');
         await expect(LoginPage.notification).toHaveText('Incorrect password')
     })
 
