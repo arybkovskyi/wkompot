@@ -2,7 +2,7 @@ require('dotenv').config();
 
 exports.config = {
     specs: [
-        './specs/**/*.spec.js',
+        './specs/**/client.spec.js',
     ],
     exclude:[
 
