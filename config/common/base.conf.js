@@ -1,27 +1,23 @@
-require('dotenv').config();
+import {config} from "dotenv";
+import hooks from './hooks.conf';
+
+config();
 
 exports.config = {
     specs: [
-        './specs/**/client.spec.js',
+        './specs/*.spec.js',
     ],
     exclude:[
-
+        './specs/**/client.spec.js'
     ],
-    maxInstances: 1,
-    capabilities: [{
-        maxInstances: 1,
-        browserName: 'chrome',
-        acceptInsecureCerts: true
-    }],
     logLevel: 'info',
     bail: 0,
     baseUrl: process.env.BASE_URL,
     waitforTimeout: 10000,
     connectionRetryTimeout: 30000,
     connectionRetryCount: 1,
-    services: ['devtools'],
+    services: ['devtools', 'geckodriver'],
     framework: 'mocha',
-
     reporters: ['spec'],
 
     mochaOpts: {
@@ -36,4 +32,6 @@ exports.config = {
                 await this.keys('Backspace');
         }, true);
     },
+
+    ...hooks
 }
