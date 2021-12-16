@@ -22,7 +22,7 @@ describe('Auth', function() {
         await expect(LoginPage.notification).toHaveText('Incorrect password')
     })
 
-    it.only('Credentials are required', async function(){
+    it('Credentials are required', async function(){
         await LoginPage.inputUsername.setValue('test');
         await LoginPage.inputUsername.smartClear();
         await expect(LoginPage.loginError).toHaveText('Required');
