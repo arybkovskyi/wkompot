@@ -1,3 +1,5 @@
+import allureReporter from '@wdio/allure-reporter';
+
 module.exports = {
     before: async function (capabilities, specs, browser) {
         browser.addCommand("smartClear", async function () {
@@ -6,4 +8,11 @@ module.exports = {
                 await this.keys('Backspace');
         }, true);
     },
+
+    afterTest: async function (test, context, result) {
+        if (test.failed || result.error) {
+            await browser.takeScreenshot();
+            allureReporter.addAttachment('URL', await browser.getUrl(), 'text/plain');
+        }
+    }
 }
