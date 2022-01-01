@@ -29,7 +29,7 @@
         "deepmerge": "^4.2.2",
         "dotenv": "^10.0.0",
         "faker": "^5.5.3",
-        "geckodriver": "^2.0.4",
-        "wdio-geckodriver-service": "^2.0.3"
+        "geckodriver": "^3.0.1",
+        "wdio-geckodriver-service": "^2.1.0"
     }
 }
