@@ -18,7 +18,9 @@ exports.config = {
     connectionRetryCount: 1,
     services: ['devtools', 'geckodriver'],
     framework: 'mocha',
-    reporters: ['spec'],
+    reporters: ['spec', ['allure',{
+        disableWebdriverStepsReporting: true
+    }]],
 
     mochaOpts: {
         ui: 'bdd',
