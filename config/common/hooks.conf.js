@@ -9,8 +9,8 @@ module.exports = {
         }, true);
     },
 
-    afterTest: async function (test, context, result) {
-        if (test.failed || result.error) {
+    afterScenario: async function (world, result, context) {
+        if (!result.passed) {
             await browser.takeScreenshot();
             allureReporter.addAttachment('URL', await browser.getUrl(), 'text/plain');
         }
